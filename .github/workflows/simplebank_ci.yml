@@ -21,8 +21,8 @@ jobs:
     
     - name: Change directory to SimpleBank
       run: cd simplebank
-    - name: print items
-      run: ls
+    - name: List checked out files
+      run: ls -R simplebank
    
     - name: Set up Go
       uses: actions/setup-go@v4
