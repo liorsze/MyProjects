@@ -14,7 +14,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout SimpleBank directory
+      uses: actions/checkout@v3
+      with:
+        path: simplebank
     
     - name: Change directory to SimpleBank
       run: cd simplebank
