@@ -14,6 +14,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+    - name: Print current directory
+      run: pwd
+  
     - name: Change directory to SimpleBank
       run: cd simplebank
 
