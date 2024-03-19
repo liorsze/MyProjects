@@ -17,7 +17,7 @@ jobs:
     - name: Checkout SimpleBank directory
       uses: actions/checkout@v3
       with:
-        path: simplebank
+        path: ./simplebank
     
     - name: Change directory to SimpleBank
       run: cd simplebank
