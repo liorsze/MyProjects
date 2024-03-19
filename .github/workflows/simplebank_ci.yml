@@ -14,10 +14,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
+    
     - name: Change directory to SimpleBank
       run: cd simplebank
-
-    - uses: actions/checkout@v3
    
     - name: Set up Go
       uses: actions/setup-go@v4
