@@ -16,6 +16,7 @@ jobs:
     steps:
     - name: Print current directory
       run: pwd
+    - name: print content of current folder
       run: ls
   
     - name: Change directory to SimpleBank
