@@ -21,6 +21,8 @@ jobs:
         
     - name: print pwd
       run: pwd
+    - name: List contents of current directory
+      run: ls -la
     - name: Change directory to SimpleBank
       run: cd simplebank
     - name: print pwd
