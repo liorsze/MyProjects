@@ -5,11 +5,11 @@ name: simplebank-ci-test
 on:
   push:
     paths:
-      - "MyProjects/simplebank/**" # Trigger only on pushes to files within 'MyProjects/simplebank'
+      - "simplebank/**" # Trigger only on pushes to files within 'MyProjects/simplebank'
     branches: ["main"]
   pull_request:
     paths:
-      - "MyProjects/simplebank/**" # Trigger only on pull requests involving files within 'MyProjects/simplebank'
+      - "simplebank/**" # Trigger only on pull requests involving files within 'MyProjects/simplebank'
     branches: ["main"]
 
 jobs:
