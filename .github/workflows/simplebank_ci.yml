@@ -6,12 +6,12 @@ on:
   push:
     paths:
       - "simplebank/**" # Trigger only on pushes to files within 'MyProjects/simplebank'
-      - "simplebank_ci.yml" 
+      - ".github/workflows/simplebank_ci.yml" 
     branches: ["main"]
   pull_request:
     paths:
       - "simplebank/**" # Trigger only on pull requests involving files within 'MyProjects/simplebank'
-      - 'simplebank_ci.yml' 
+      - '.github/workflows/simplebank_ci.yml' 
     branches: ["main"]
 
 jobs:
@@ -53,7 +53,7 @@ jobs:
          $ curl -L https://github.com/golang-migrate/migrate/releases/download/v4.17.0/migrate.linux-amd64.tar.gz | tar xvz    
           sudo mv migrate.linux-amd64 /usr/bin/
           which migrate
-          
+
       - name: Run migrations
         run: |
           pwd
