@@ -21,6 +21,7 @@ jobs:
         pwd
         cd simplebank
         pwd
+        ls -lR
 
     - name: Set up Go
       uses: actions/setup-go@v4
