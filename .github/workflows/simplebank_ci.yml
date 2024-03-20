@@ -4,26 +4,58 @@ name: simplebank-ci-test
 
 on:
   push:
-    branches: [ "main" ]
+    paths:
+      - "MyProjects/simplebank/**" # Trigger only on pushes to files within 'MyProjects/simplebank'
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    paths:
+      - "MyProjects/simplebank/**" # Trigger only on pull requests involving files within 'MyProjects/simplebank'
+    branches: ["main"]
 
 jobs:
-
   test:
-    runs-on: macos-latest
-    steps:
-    - name: Checkout SimpleBank directory
-      uses: actions/checkout@v3
-        
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '^1.20'
+    runs-on:
+      ubuntu-latest
+      # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:16
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: secret
+          POSTGRES_DB: simple_bank
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
 
-    - name: Test
-      run: |
-        pwd
-        cd simplebank
-        pwd
-        make test
+    steps:
+      - name: Checkout SimpleBank directory
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "^1.20"
+
+      - name: Run migrations
+        run: |
+          pwd
+          cd simplebank
+          pwd
+          make migrationup
+
+      - name: Test
+        run: |
+          pwd
+          cd simplebank
+          pwd
+          make test
