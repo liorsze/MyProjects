@@ -59,7 +59,7 @@ jobs:
           pwd
           cd simplebank
           pwd
-          make migrationup
+          make migrateup
 
       - name: Test
         run: |
