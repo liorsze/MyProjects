@@ -6,10 +6,12 @@ on:
   push:
     paths:
       - "simplebank/**" # Trigger only on pushes to files within 'MyProjects/simplebank'
+      - "simplebank_ci.yml" 
     branches: ["main"]
   pull_request:
     paths:
       - "simplebank/**" # Trigger only on pull requests involving files within 'MyProjects/simplebank'
+      - 'simplebank_ci.yml' 
     branches: ["main"]
 
 jobs:
