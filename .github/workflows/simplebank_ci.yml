@@ -15,8 +15,6 @@ jobs:
     steps:
     - name: Checkout SimpleBank directory
       uses: actions/checkout@v3
-      with:
-        path: ./simplebank
         
     - name: print pwd
       run: pwd
