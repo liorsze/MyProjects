@@ -18,9 +18,10 @@ jobs:
         
     - name: Change directory to SimpleBank
       run: |
+        pwd
         cd simplebank
         pwd
-        ls -la
+
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
