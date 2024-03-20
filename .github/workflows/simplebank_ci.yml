@@ -30,6 +30,7 @@ jobs:
 
     - name: Check if Makefile exists
       run: |
+        pwd
         if [ ! -f Makefile ]; then
           echo "Makefile doesn't exist"
           exit 1
