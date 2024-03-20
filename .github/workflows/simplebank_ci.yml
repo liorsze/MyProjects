@@ -16,25 +16,14 @@ jobs:
     - name: Checkout SimpleBank directory
       uses: actions/checkout@v3
         
-    - name: Change directory to SimpleBank
-      run: |
-        pwd
-        cd simplebank
-        pwd
-        ls -lR
-
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
         go-version: '1.20'
 
-    - name: Check if Makefile exists
+    - name: Test
       run: |
         pwd
-        if [ ! -f Makefile ]; then
-          echo "Makefile doesn't exist"
-          exit 1
-        fi
-
-    - name: Test
-      run: make test
+        cd simplebank
+        pwd
+        make test
