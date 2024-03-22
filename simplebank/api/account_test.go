@@ -335,6 +335,102 @@ func TestListAccountsAPI(t *testing.T) {
 	}
 }
 
+func TestDeleteAccountAPI(t *testing.T) {
+	account := randomAccount()
+
+	type Query struct{
+		ID 		int64
+	}
+
+	testCases := []struct {
+		name          string
+		query     	  Query
+		buildStubs    func(store *mockdb.MockStore)
+		checkResponse func(t *testing.T, recorder *httptest.ResponseRecorder)
+	}{
+		{
+			name:      "OK",
+			query: Query{
+				ID: account.ID,
+			},
+			buildStubs: func(store *mockdb.MockStore) {
+
+				store.EXPECT().
+					DeleteAccount(gomock.Any(), gomock.Eq(account.ID)).
+					Times(1).
+					Return(account.ID, nil)
+			},
+			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusOK, recorder.Code)
+				requireBodyMatchAccountId(t,recorder.Body,account)
+			},
+		},
+		{
+			name:      "InternalError",
+			query: Query{
+				ID: account.ID,
+			},
+			buildStubs: func(store *mockdb.MockStore) {
+
+				store.EXPECT().
+					DeleteAccount(gomock.Any(), gomock.Eq(account.ID)).
+					Times(1).
+					Return(int64(0), sql.ErrConnDone)
+			},
+			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusInternalServerError, recorder.Code)
+			},
+		},
+		{
+			name:      "InvalidID",
+			query: Query{
+				ID: -1,
+			},
+			buildStubs: func(store *mockdb.MockStore) {
+
+				store.EXPECT().
+					DeleteAccount(gomock.Any(), gomock.Eq(account.ID)).
+					Times(0)
+			},
+			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
+				require.Equal(t, http.StatusBadRequest, recorder.Code)
+			},
+		},
+	
+	}
+	
+
+	for i := range testCases {
+		tc := testCases[i]
+
+		t.Run(tc.name,func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
+	
+			store := mockdb.NewMockStore(ctrl)
+			// build stubs
+			tc.buildStubs(store)
+	
+			// start test server and send request
+			server := NewServer(store)
+			recorder := httptest.NewRecorder()
+	
+			url := "/accounts"
+			request, err := http.NewRequest(http.MethodDelete, url, nil)
+			require.NoError(t, err)
+			
+			// Add query parameters to request URL
+			q := request.URL.Query()
+			q.Add("id",fmt.Sprintf("%d",tc.query.ID))
+			request.URL.RawQuery = q.Encode()
+
+			server.router.ServeHTTP(recorder, request)
+			// check response
+			tc.checkResponse(t,recorder)
+		})
+	}
+}
+
 
 func randomAccount() db.Account {
 	return db.Account{
@@ -363,5 +459,20 @@ func requireBodyMatchAccounts(t *testing.T, body *bytes.Buffer, accounts []db.Ac
 	err = json.Unmarshal(data, &gotAccounts)
 	require.NoError(t, err)
 	require.Equal(t, gotAccounts, accounts)
+}
+
+func requireBodyMatchAccountId(t *testing.T, body *bytes.Buffer, account db.Account) {
+    var data struct {
+        Message string `json:"message"`
+    }
+    err := json.NewDecoder(body).Decode(&data)
+    require.NoError(t, err)
+
+    // Parse the account ID from the message string
+    var accountID int64
+    _, err = fmt.Sscanf(data.Message, "Deleted account with ID %d", &accountID)
+    require.NoError(t, err)
+
+    require.Equal(t, accountID, account.ID)
 }
 
