@@ -3,7 +3,7 @@ package db
 import (
 	"context"
 	"database/sql"
-	"simplebank/db/util"
+	"simplebank/util"
 	"testing"
 	"time"
 
@@ -78,7 +78,7 @@ func TestDeleteAccount(t *testing.T) {
 	require.Empty(t, account2)
 	require.EqualError(t, err, sql.ErrNoRows.Error())
 	require.Error(t, err)
-	require.Equal(t,deletedID,account1.ID)
+	require.Equal(t, deletedID, account1.ID)
 }
 
 func TestListAccounts(t *testing.T) {
