@@ -6,7 +6,8 @@ on:
   push:
     paths:
       - "simplebank/**" # Trigger only on pushes to files within 'MyProjects/simplebank'
-      - ".github/workflows/simplebank_ci.yml"
+      - ".github/workflows/simplebank_test.yml"
+      - ".github/workflows/simplebank_deploy.yml"
     branches: ["main"]
   pull_request:
     paths:
