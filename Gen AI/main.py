@@ -1,4 +1,4 @@
-#main.py
+#main.py : the main code for user input and output
 
 from nlp_pipeline import extract_parameters
 from utils import translate_hebrew_to_english
@@ -22,7 +22,7 @@ def construct_url(car_family_type, year_range, price_range, manufacturers):
     return base_url + "&".join(params)
 
 def main():
-    user_input = "2015-2016 אני מחפש טויוטה משפחתית במחיר של עד מאה אלף שקלים  בשנת "
+    user_input = " אני מחפש טויוטה משפחתית במחיר של עד מאה אלף שקלים משנת 2016 ומעלה "
     translated_input = translate_hebrew_to_english(user_input)
     print(translated_input)
     car_family_type, year_range, price_range, manufacturers = extract_parameters(translated_input)

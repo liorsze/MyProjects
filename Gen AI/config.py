@@ -1,4 +1,4 @@
-#config.py
+#config.py : includes configurations and data to use
 
 car_type_map = {
     "crossover": "10",

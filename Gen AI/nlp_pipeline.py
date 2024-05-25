@@ -1,11 +1,11 @@
-# nlp_pipeline.py
+# nlp_pipeline.py : responisble for the NLP processing and extracting the parameters from the user input
 
 import spacy
 from spacy.pipeline import EntityRuler
 from config import car_type_map, manufacturer_map
-from utils import parse_date_range
+from utils import parse_date_range,text_to_number
 import re
-from word2number import w2n
+
 
 # Load English tokenizer, tagger, parser, NER, and word vectors
 nlp = spacy.load("en_core_web_sm")
@@ -19,16 +19,6 @@ ruler = nlp.add_pipe("entity_ruler", before="ner")
 ruler.add_patterns(patterns1)
 ruler.add_patterns(patterns2)
 
-def text_to_number(text):
-    try:
-        # Handle specific multipliers like "grand"
-        if "grand" in text:
-            number = w2n.word_to_num(text.replace("grand", "").strip()) * 1000
-        else:
-            number = w2n.word_to_num(text)
-        return number
-    except ValueError:
-        return None
 
 def extract_parameters(user_input):
     # Parse the user input using spaCy
@@ -41,6 +31,7 @@ def extract_parameters(user_input):
     manufacturers = []
 
     # Extract parameters
+    print("entities: ",doc.ents)
     for ent in doc.ents:
         if ent.label_ == "CAR_TYPE":
             car_type_id = car_type_map.get(ent.text.lower())
