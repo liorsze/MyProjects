@@ -2,13 +2,13 @@
 
 car_type_map = {
     "crossover": "10",
-    "family car": "2",
-    "luxury car": "8",
+    "family": "2",
+    "luxury": "8",
     "jeep": "5",
     "mini car": "1",
     "minivan": "9",
-    "executive car": "3",
-    "sports car": "4",
+    "executive": "3",
+    "sports ": "4",
     "commercial vehicle": "7",
     "pickup truck": "6"
 }

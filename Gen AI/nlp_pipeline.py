@@ -1,25 +1,34 @@
-#nlp_pipeline.py
+# nlp_pipeline.py
 
 import spacy
 from spacy.pipeline import EntityRuler
 from config import car_type_map, manufacturer_map
 from utils import parse_date_range
 import re
+from word2number import w2n
 
 # Load English tokenizer, tagger, parser, NER, and word vectors
 nlp = spacy.load("en_core_web_sm")
 
-
 # Define patterns for the custom car type entities
 patterns1 = [{"label": "CAR_TYPE", "pattern": car_type} for car_type in car_type_map.keys()]
 patterns2 = [{"label": "ORG", "pattern": man} for man in manufacturer_map.keys()]
-
 
 # Create an EntityRuler and add the patterns to it
 ruler = nlp.add_pipe("entity_ruler", before="ner")
 ruler.add_patterns(patterns1)
 ruler.add_patterns(patterns2)
 
+def text_to_number(text):
+    try:
+        # Handle specific multipliers like "grand"
+        if "grand" in text:
+            number = w2n.word_to_num(text.replace("grand", "").strip()) * 1000
+        else:
+            number = w2n.word_to_num(text)
+        return number
+    except ValueError:
+        return None
 
 def extract_parameters(user_input):
     # Parse the user input using spaCy
@@ -44,16 +53,22 @@ def extract_parameters(user_input):
             else:
                 year_range = ent.text
         elif ent.label_ == "MONEY" or ent.label_ == "CARDINAL":
-            # Extract digits from the money string
-            price_digits = re.findall(r'\d+', ent.text)
-            if price_digits:
-                if len(price_digits) == 1:
-                    price_range = "-".join(["-1", price_digits[0]])
-                elif len(price_digits) == 2:
-                    price_range = "-".join(price_digits)
+            # Convert text to number
+            number = text_to_number(ent.text)
+            if number:
+                price_range = f"-1-{number}"
+            else:
+                # Extract digits from the money string
+                price_digits = re.findall(r'\d+', ent.text)
+                if price_digits:
+                    if len(price_digits) == 1:
+                        price_range = "-1-" + price_digits[0]
+                    elif len(price_digits) == 2:
+                        price_range = "-".join(price_digits)
         elif ent.label_ == "ORG":
             manufacturer_id = manufacturer_map.get(ent.text.lower())
             if manufacturer_id:
                 manufacturers.append(manufacturer_id)
 
     return car_family_type, year_range, price_range, manufacturers
+
