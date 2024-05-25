@@ -56,7 +56,7 @@ def extract_parameters(user_input):
                         price_range = "-1-" + price_digits[0]
                     elif len(price_digits) == 2:
                         price_range = "-".join(price_digits)
-        elif ent.label_ == "ORG":
+        elif ent.label_ == "ORG" or ent.label_ == "PRODUCT":
             manufacturer_id = manufacturer_map.get(ent.text.lower())
             if manufacturer_id:
                 manufacturers.append(manufacturer_id)
