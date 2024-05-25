@@ -22,7 +22,7 @@ def construct_url(car_family_type, year_range, price_range, manufacturers):
     return base_url + "&".join(params)
 
 def main():
-    user_input = "אני מחפש מכונית משפחתית מהעשור האחרון שעולה עד 30000 שקלים מסוג טויוטה או bmw"
+    user_input = "אני מחש מכונית משפחתית מהעשור האחרון שעולה עד 30000 שקלים מסוג טויוטה או במוו"
     translated_input = translate_hebrew_to_english(user_input)
     print(translated_input)
     car_family_type, year_range, price_range, manufacturers = extract_parameters(translated_input)

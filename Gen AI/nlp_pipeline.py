@@ -11,13 +11,14 @@ nlp = spacy.load("en_core_web_sm")
 
 
 # Define patterns for the custom car type entities
-patterns = [{"label": "CAR_TYPE", "pattern": car_type} for car_type in car_type_map.keys()]
-patterns = [{"label": "ORG", "pattern": man} for man in manufacturer_map.keys()]
+patterns1 = [{"label": "CAR_TYPE", "pattern": car_type} for car_type in car_type_map.keys()]
+patterns2 = [{"label": "ORG", "pattern": man} for man in manufacturer_map.keys()]
 
 
 # Create an EntityRuler and add the patterns to it
 ruler = nlp.add_pipe("entity_ruler", before="ner")
-ruler.add_patterns(patterns)
+ruler.add_patterns(patterns1)
+ruler.add_patterns(patterns2)
 
 
 def extract_parameters(user_input):
@@ -30,7 +31,7 @@ def extract_parameters(user_input):
     price_range = None
     manufacturers = []
 
-    # Extract parameters using spaCy's NER and syntactic parsing
+    # Extract parameters
     for ent in doc.ents:
         if ent.label_ == "CAR_TYPE":
             car_type_id = car_type_map.get(ent.text.lower())
