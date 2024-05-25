@@ -19,18 +19,23 @@ def parse_date_range(date_text):
         # Check if start year is mentioned in the input text
         if str(start_year) in date_text:
             # Extract the end year if it's explicitly mentioned
-            end_year_match = re.search(r'\b\d{4}\b', date_text)
-            if end_year_match:
-                end_year = int(end_year_match.group())
+            years = re.findall(r'\b\d{4}\b', date_text)
+            if len(years) == 2:
+                end_year = max(years[0],years[1])
             else:
-                end_year = start_year
+                end_year = -1
         else:
             # If start year is not mentioned, assume the current year as end year
             end_year = datetime.now().year
         return f"{start_year}-{end_year}"
     else:
-        return None
-
+        years = re.findall(r'\b\d{4}\b', date_text)
+        if len(years) == 2:
+            start_year, end_year = int(years[0]), int(years[1])
+            return f"{start_year}-{end_year}"
+        else:
+            return f"{years[0]}-{-1}"
+        
 def text_to_number(text):
     try:
         # Handle specific multipliers like "grand"

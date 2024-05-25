@@ -21,7 +21,7 @@ ruler.add_patterns(patterns2)
 
 
 def extract_parameters(user_input):
-    # Parse the user input using spaCy
+    # Parse the user input
     doc = nlp(user_input)
     
     # Initialize parameters
