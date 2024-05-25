@@ -195,12 +195,12 @@ def construct_url(car_family_type, year_range, price_range, manufacturers):
         params.append(f"price={price_range}")
 
     if manufacturers:
-        params.append("manufacturer=" + ",".join(manufacturers))
+        params.append("manufacturer=" + ",".join(manufacturers[:4]))
 
     return base_url + "&".join(params)
 
 def main():
-    user_input = "I am looking for an executive car or jeep from 2018 that costs between 5000$-7000$ and is made by Toyota,Jeep or Mazda."
+    user_input = "I am looking for an executive car or jeep from 2018 that costs between 5000$-7000$ and is made by Toyota,Jeep,MG,BMW or Mazda."
     car_family_type, year_range, price_range, manufacturers = extract_parameters(user_input)
     url = construct_url(car_family_type, year_range, price_range, manufacturers)
     print("Generated URL:", url)
