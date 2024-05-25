@@ -1,3 +1,5 @@
+#config.py
+
 car_type_map = {
     "crossover": "10",
     "family car": "2",

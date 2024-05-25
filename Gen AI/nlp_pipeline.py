@@ -1,3 +1,5 @@
+#nlp_pipeline.py
+
 import spacy
 from spacy.pipeline import EntityRuler
 from config import car_type_map, manufacturer_map
@@ -7,12 +9,16 @@ import re
 # Load English tokenizer, tagger, parser, NER, and word vectors
 nlp = spacy.load("en_core_web_sm")
 
+
 # Define patterns for the custom car type entities
 patterns = [{"label": "CAR_TYPE", "pattern": car_type} for car_type in car_type_map.keys()]
+patterns = [{"label": "ORG", "pattern": man} for man in manufacturer_map.keys()]
+
 
 # Create an EntityRuler and add the patterns to it
 ruler = nlp.add_pipe("entity_ruler", before="ner")
 ruler.add_patterns(patterns)
+
 
 def extract_parameters(user_input):
     # Parse the user input using spaCy
@@ -36,11 +42,14 @@ def extract_parameters(user_input):
                 year_range = parsed_range
             else:
                 year_range = ent.text
-        elif ent.label_ == "MONEY":
+        elif ent.label_ == "MONEY" or ent.label_ == "CARDINAL":
             # Extract digits from the money string
             price_digits = re.findall(r'\d+', ent.text)
-            if len(price_digits) == 2:
-                price_range = "-".join(price_digits)
+            if price_digits:
+                if len(price_digits) == 1:
+                    price_range = "-".join(["-1", price_digits[0]])
+                elif len(price_digits) == 2:
+                    price_range = "-".join(price_digits)
         elif ent.label_ == "ORG":
             manufacturer_id = manufacturer_map.get(ent.text.lower())
             if manufacturer_id:

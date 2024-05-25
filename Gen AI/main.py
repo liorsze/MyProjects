@@ -1,5 +1,7 @@
+#main.py
+
 from nlp_pipeline import extract_parameters
-from config import car_type_map, manufacturer_map
+from utils import translate_hebrew_to_english
 
 def construct_url(car_family_type, year_range, price_range, manufacturers):
     base_url = "https://www.yad2.co.il/vehicles/cars?"
@@ -20,8 +22,10 @@ def construct_url(car_family_type, year_range, price_range, manufacturers):
     return base_url + "&".join(params)
 
 def main():
-    user_input = "I am looking for an executive car or jeep from 2018 that costs between 5000$-7000$ and is made by Toyota,Jeep,MG,BMW or Mazda."
-    car_family_type, year_range, price_range, manufacturers = extract_parameters(user_input)
+    user_input = "אני מחפש מכונית משפחתית מהעשור האחרון שעולה עד 30000 שקלים מסוג טויוטה או bmw"
+    translated_input = translate_hebrew_to_english(user_input)
+    print(translated_input)
+    car_family_type, year_range, price_range, manufacturers = extract_parameters(translated_input)
     url = construct_url(car_family_type, year_range, price_range, manufacturers)
     print("Generated URL:", url)
 
