@@ -49,7 +49,6 @@ def extract_parameters(user_input):
             if number:
                 price_range = f"-1-{number}"
             else:
-                # Extract digits from the money string
                 price_digits = re.findall(r'\d+', ent.text)
                 if price_digits:
                     if len(price_digits) == 1:
