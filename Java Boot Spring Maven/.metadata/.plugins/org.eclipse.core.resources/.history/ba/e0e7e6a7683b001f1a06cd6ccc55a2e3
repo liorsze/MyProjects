@@ -1,0 +1,6 @@
+package com.rest.webservices.restful_web_services.exception;
+
+public class ErrorDetails {
+
+	private 
+}

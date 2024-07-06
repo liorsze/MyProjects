@@ -1,0 +1,5 @@
+package com.rest.webservices.restful_web_services.USER;
+
+public class UserResource {
+
+}

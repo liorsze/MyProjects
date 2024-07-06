@@ -1,0 +1,31 @@
+package com.rest.webservices.restful_web_services.exception;
+
+import java.time.LocalDate;
+
+public class ErrorDetails {
+
+	private LocalDate timestamp;
+	private String message;
+	private String detail;
+	/**
+	 * @param timestamp
+	 * @param message
+	 * @param detail
+	 */
+	public ErrorDetails(LocalDate timestamp, String message, String detail) {
+		super();
+		this.timestamp = timestamp;
+		this.message = message;
+		this.detail = detail;
+	}
+	public LocalDate getTimestamp() {
+		return timestamp;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public String getDetail() {
+		return detail;
+	}
+	
+}
