@@ -4,6 +4,7 @@ import java.net.URI;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -34,7 +35,7 @@ public class UserResource {
 	}
 	
 	@PostMapping(path = "/users")
-	public ResponseEntity<User> createUser(@RequestBody User user)
+	public ResponseEntity<User> createUser(@Valid @RequestBody User user)
 	{
 		User savedUser = service.save(user);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
