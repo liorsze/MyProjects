@@ -1,5 +1,6 @@
 package com.rest.webservices.restful_web_services.user;
 
+import com.rest.webservices.restful_web_services.jpa.PostRepository;
 import com.rest.webservices.restful_web_services.jpa.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
@@ -19,10 +20,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class UserJpaResource {
 
     private UserRepository repository;
+    private PostRepository postRepository;
 
-    public UserJpaResource(UserRepository repository) {
-
+    public UserJpaResource(UserRepository repository, PostRepository postRepository) {
         this.repository = repository;
+        this.postRepository = postRepository;
     }
 
     @GetMapping(path = "/jpa/users")
@@ -64,4 +66,19 @@ public class UserJpaResource {
 		}
 		return foundUser.get().getPosts();
 	}
+
+    @PostMapping(path = "/jpa/users/{id}/posts")
+    public ResponseEntity<Object> createPostForUser(@PathVariable int id, @Valid @RequestBody Post post) {
+        Optional<User> foundUser = repository.findById(id);
+        if (foundUser.isEmpty()) {
+            throw new UserNotFoundException("id:" + id);
+        }
+
+        post.setUser(foundUser.get());
+        Post savedPost = postRepository.save(post);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(savedPost.getId()).toUri();
+        return ResponseEntity.created(location).build();
+    }
 }
