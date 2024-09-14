@@ -1,0 +1,3 @@
+[submodule "codecrafters-redis-python"]
+	path = codecrafters-redis-python
+	url = https://git.codecrafters.io/74d0ba98d58b69cc
