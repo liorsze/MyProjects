@@ -31,7 +31,7 @@ class OrderServiceApplicationTests {
 	}
 
 	@Test
-	void shouldSunmitOrder() {
+	void shouldSubmitOrder() {
 		String submitOrder = """
 				{
 					"skuCode":"iphone_15",
