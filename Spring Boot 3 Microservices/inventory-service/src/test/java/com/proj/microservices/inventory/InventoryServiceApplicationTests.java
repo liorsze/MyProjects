@@ -45,7 +45,7 @@ class InventoryServiceApplicationTests {
 	}
 
 	@Test
-	void shouldReadInventoryTrueeResponse() {
+	void shouldReadInventoryTrueResponse() {
 		var Response = RestAssured.given()
 				.when()
 				.get("api/inventory?skuCode=iphone_15&quantity=100")
