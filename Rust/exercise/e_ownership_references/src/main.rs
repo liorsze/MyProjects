@@ -64,8 +64,7 @@ fn change(s: &mut String){
 }
 
 fn eat(s: String)->bool{
-    let res=if s.starts_with("b") && s.contains("a"){true} else {false};
-    res
+    s.starts_with("b") && s.contains("a")
 }
 
 fn bedazzle(s:&mut String){
