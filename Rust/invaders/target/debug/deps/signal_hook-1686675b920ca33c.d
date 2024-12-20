@@ -1,0 +1,9 @@
+/Users/liorszechtman/Desktop/MyProjects/Rust/invaders/target/debug/deps/libsignal_hook-1686675b920ca33c.rmeta: /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/lib.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/cleanup.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/flag.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/iterator.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/pipe.rs
+
+/Users/liorszechtman/Desktop/MyProjects/Rust/invaders/target/debug/deps/signal_hook-1686675b920ca33c.d: /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/lib.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/cleanup.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/flag.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/iterator.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/pipe.rs
+
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/lib.rs:
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/cleanup.rs:
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/flag.rs:
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/iterator.rs:
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/signal-hook-0.1.17/src/pipe.rs:
