@@ -15,10 +15,12 @@ impl Default for GameState {
 }
 
 const PLAYER_SPEED: f32 = 250.0;
+const ROAD_SPEED: f32 = 400.0;
 fn main() {
     let mut game = Game::new();
 
     // game setup goes here
+
     // add music
     game.audio_manager
         .play_music(MusicPreset::WhimsicalPopsicle, 0.2);
@@ -28,6 +30,12 @@ fn main() {
     player1.translation.x = -500.0;
     player1.layer = 10.0;
     player1.collision = true;
+
+    for i in 0..10 {
+        let roadline = game.add_sprite(format!("roadline{}", i), SpritePreset::RacingBarrierWhite);
+        roadline.scale = 0.1;
+        roadline.translation.x = -600.0 + 150.0 * i as f32;
+    }
 
     game.add_logic(game_logic);
     game.run(GameState::default());
@@ -50,5 +58,15 @@ fn game_logic(engine: &mut Engine, game_state: &mut GameState) {
     player1.rotation = diraction * 0.15;
     if player1.translation.y > 360.0 || player1.translation.y < -360.0 {
         game_state.health_amount = 0;
+    }
+
+    // move roadlines
+    for sprite in engine.sprites.values_mut(){
+        if sprite.label.starts_with("roadline"){
+            sprite.translation.x -= ROAD_SPEED * engine.delta_f32;
+            if sprite.translation.x < -675.0 {
+                sprite.translation.x += 1500.0;
+            }
+        }
     }
 }
