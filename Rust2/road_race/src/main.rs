@@ -1,4 +1,5 @@
 use rusty_engine::prelude::*;
+use rand::prelude::*;
 
 #[derive(Resource)]
 struct GameState {
@@ -31,12 +32,23 @@ fn main() {
     player1.layer = 10.0;
     player1.collision = true;
 
+    // add roadlines
     for i in 0..10 {
         let roadline = game.add_sprite(format!("roadline{}", i), SpritePreset::RacingBarrierWhite);
         roadline.scale = 0.1;
         roadline.translation.x = -600.0 + 150.0 * i as f32;
     }
 
+    //add obstacles
+    let obstacle_presets = vec![SpritePreset::RacingBarrelBlue,SpritePreset::RacingBarrelRed,SpritePreset::RacingConeStraight];
+    for (i,preset) in obstacle_presets.iter().enumerate(){
+        let obstcle = game.add_sprite(format!("obstcle{}",i), *preset);
+        obstcle.layer = 5.0;
+        obstcle.collision = true;
+        obstcle.translation.x = thread_rng().gen_range(800.0..1600.0);
+        obstcle.translation.y = thread_rng().gen_range(-300.0..300.0);
+    }
+    
     game.add_logic(game_logic);
     game.run(GameState::default());
 }
@@ -66,6 +78,14 @@ fn game_logic(engine: &mut Engine, game_state: &mut GameState) {
             sprite.translation.x -= ROAD_SPEED * engine.delta_f32;
             if sprite.translation.x < -675.0 {
                 sprite.translation.x += 1500.0;
+            }
+        }
+
+        if sprite.label.starts_with("obstcle"){
+            sprite.translation.x -= ROAD_SPEED * engine.delta_f32;
+            if sprite.translation.x < -800.0 {
+                sprite.translation.x = thread_rng().gen_range(800.0..1600.0);
+                sprite.translation.y = thread_rng().gen_range(-300.0..300.0);
             }
         }
     }
