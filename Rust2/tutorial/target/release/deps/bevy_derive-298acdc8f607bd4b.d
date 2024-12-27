@@ -1,9 +1,0 @@
-/Users/liorszechtman/Desktop/MyProjects/Rust2/tutorial/target/release/deps/libbevy_derive-298acdc8f607bd4b.dylib: /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/lib.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/app_plugin.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/bevy_main.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/derefs.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/enum_variant_meta.rs
-
-/Users/liorszechtman/Desktop/MyProjects/Rust2/tutorial/target/release/deps/bevy_derive-298acdc8f607bd4b.d: /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/lib.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/app_plugin.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/bevy_main.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/derefs.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/enum_variant_meta.rs
-
-/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/lib.rs:
-/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/app_plugin.rs:
-/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/bevy_main.rs:
-/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/derefs.rs:
-/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_derive-0.12.1/src/enum_variant_meta.rs:
