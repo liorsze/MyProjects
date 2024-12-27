@@ -1,6 +1,7 @@
 
 use bevy::{audio::PlaybackMode, utils::label};
 use rusty_engine::prelude::*;
+use rand::prelude::*;
 
 #[derive(Resource)]
 struct GameState{
@@ -16,7 +17,7 @@ impl Default for GameState {
             high_score: 0,
             score: 0,
             fire_index: 0,
-            spawn_timer: Timer::from_seconds(1.0, TimerMode::Once),
+            spawn_timer: Timer::from_seconds(2.0, TimerMode::Repeating),
         }
     }
 }
@@ -88,11 +89,22 @@ fn game_logic(engine: &mut Engine, game_state: &mut GameState) {
             let label = format!("fire_{}", game_state.fire_index);
             game_state.fire_index += 1;
             //let fire: &mut Sprite = engine.add_sprite( label.clone(), "sprite/red-flame.png");
-            let mut fire = engine.add_sprite( label.clone(), "sprite/red-flame.png");
+            let fire = engine.add_sprite( label.clone(), "sprite/red-flame.png");
             fire.translation = mouse_location;
             fire.collision = true;
             fire.scale = 0.5;
         }
+    }
+
+    if game_state.spawn_timer.tick(engine.delta).just_finished(){
+        let label = format!("fire_{}", game_state.fire_index);
+        game_state.fire_index += 1;
+        //let fire: &mut Sprite = engine.add_sprite( label.clone(), "sprite/red-flame.png");
+        let fire = engine.add_sprite( label.clone(), "sprite/red-flame.png");
+        fire.translation.x = thread_rng().gen_range(-550.0..550.0);
+        fire.translation.y = thread_rng().gen_range(-325.0..325.0);
+        fire.collision = true;
+        fire.scale = 0.5;
     }
 
     // Reset score
