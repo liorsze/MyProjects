@@ -1,4 +1,4 @@
-use rusty_engine::prelude::*;
+use rusty_engine::{game, prelude::*};
 use rand::prelude::*;
 
 #[derive(Resource)]
@@ -59,6 +59,10 @@ fn main() {
 }
 
 fn game_logic(engine: &mut Engine, game_state: &mut GameState) {
+    if game_state.lost {
+        return;
+    }
+
     let mut diraction: f32 = 0.0; // 1.0 is up, 0.0 is not moving, -1.0 is down
 
     // keyboard input
@@ -104,5 +108,15 @@ fn game_logic(engine: &mut Engine, game_state: &mut GameState) {
             health_text.value = format!("Health: {}",game_state.health_amount);
             engine.audio_manager.play_sfx(SfxPreset::Impact3, 0.5);
         }
+        if game_state.health_amount == 0 {
+            break;
+        }
+    }
+    if game_state.health_amount == 0 {
+        game_state.lost = true;
+        engine.audio_manager.play_sfx(SfxPreset::Jingle3, 0.5);
+        engine.audio_manager.stop_music();
+        let game_over_text = engine.add_text("game_over_text", "Game Over");
+        game_over_text.font_size = 128.0;
     }
 }
