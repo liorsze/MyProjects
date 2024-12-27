@@ -9,7 +9,7 @@ struct GameState {
 impl Default for GameState {
     fn default() -> Self {
         Self {
-            health_amount: 5,
+            health_amount: INITIAL_HEALTH,
             lost: false,
         }
     }
@@ -17,6 +17,7 @@ impl Default for GameState {
 
 const PLAYER_SPEED: f32 = 250.0;
 const ROAD_SPEED: f32 = 400.0;
+const INITIAL_HEALTH: u8 = 5;
 fn main() {
     let mut game = Game::new();
 
@@ -48,6 +49,10 @@ fn main() {
         obstcle.translation.x = thread_rng().gen_range(800.0..1600.0);
         obstcle.translation.y = thread_rng().gen_range(-300.0..300.0);
     }
+
+    // add health text
+    let health_text = game.add_text("health_text", format!("Health: {}",INITIAL_HEALTH));
+    health_text.translation = Vec2::new(550.0,320.0);
     
     game.add_logic(game_logic);
     game.run(GameState::default());
@@ -87,6 +92,17 @@ fn game_logic(engine: &mut Engine, game_state: &mut GameState) {
                 sprite.translation.x = thread_rng().gen_range(800.0..1600.0);
                 sprite.translation.y = thread_rng().gen_range(-300.0..300.0);
             }
+        }
+    }
+    let health_text = engine.texts.get_mut("health_text").unwrap();
+    for event in engine.collision_events.drain(..){
+        if !event.pair.either_contains("player1") || event.state.is_end(){
+            continue;
+        }
+        if game_state.health_amount > 0 {
+            game_state.health_amount -= 1;
+            health_text.value = format!("Health: {}",game_state.health_amount);
+            engine.audio_manager.play_sfx(SfxPreset::Impact3, 0.5);
         }
     }
 }
