@@ -40,7 +40,7 @@ fn main() {
     }
 
     //add obstacles
-    let obstacle_presets = vec![SpritePreset::RacingBarrelBlue,SpritePreset::RacingBarrelRed,SpritePreset::RacingConeStraight];
+    let obstacle_presets = vec![SpritePreset::RacingBarrelBlue,SpritePreset::RacingBarrelRed,SpritePreset::RacingConeStraight,SpritePreset::RacingBarrelBlue,SpritePreset::RacingBarrelRed,SpritePreset::RacingConeStraight];
     for (i,preset) in obstacle_presets.iter().enumerate(){
         let obstcle = game.add_sprite(format!("obstcle{}",i), *preset);
         obstcle.layer = 5.0;
