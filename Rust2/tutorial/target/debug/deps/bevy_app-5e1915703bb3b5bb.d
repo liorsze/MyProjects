@@ -1,0 +1,10 @@
+/Users/liorszechtman/Desktop/MyProjects/Rust2/tutorial/target/debug/deps/libbevy_app-5e1915703bb3b5bb.rmeta: /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/lib.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/app.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/main_schedule.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/plugin.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/plugin_group.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/schedule_runner.rs
+
+/Users/liorszechtman/Desktop/MyProjects/Rust2/tutorial/target/debug/deps/bevy_app-5e1915703bb3b5bb.d: /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/lib.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/app.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/main_schedule.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/plugin.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/plugin_group.rs /Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/schedule_runner.rs
+
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/lib.rs:
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/app.rs:
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/main_schedule.rs:
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/plugin.rs:
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/plugin_group.rs:
+/Users/liorszechtman/.cargo/registry/src/index.crates.io-6f17d22bba15001f/bevy_app-0.12.1/src/schedule_runner.rs:
