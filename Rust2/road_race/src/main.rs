@@ -1,4 +1,4 @@
-use rusty_engine::{game, prelude::*};
+use rusty_engine::prelude::*;
 use rand::prelude::*;
 
 #[derive(Resource)]
