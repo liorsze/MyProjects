@@ -1,0 +1,36 @@
+# Global ignores for all projects
+.DS_Store
+*.log
+*.tmp
+*.bak
+*.swp
+.vscode/
+.idea/
+*.iml
+
+# Rust-specific ignores
+**/target/
+**/Cargo.lock  # Optional: if you're okay with not tracking lock files
+
+# Java-specific ignores
+**/target/
+**/build/
+*.class
+*.jar
+*.war
+.classpath
+.project
+
+# Node.js or TypeScript (if applicable)
+**/node_modules/
+**/dist/
+
+# Python-specific ignores
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+
+# Submodule ignores
+.gitmodules
+Rust2/.DS_Store
+Rust2/road_race/Cargo.lock
